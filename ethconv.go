@@ -1,36 +1,56 @@
 package ethconv
 
 import (
+	"fmt"
 	"math/big"
 )
 
-func FromWei(amount *big.Int, unit string) (*big.Int, bool) {
-	if unit == "wei" {
-		return amount, true
+// FromWei convert from wei to a unit
+func FromWei(amount *big.Int, unit string) (*big.Float, error) {
+	result := new(big.Float)
+	result.SetInt(amount)
+	if unit == Wei {
+		return result, nil
 	}
-	value, ok := getUnitValue(unit)
-	if !ok {
-		return nil, false
+	value, err := getUnitValue(unit)
+	if err != nil {
+		return nil, err
 	}
-	return value.Div(amount, amount), true
+	return result.Quo(result, new(big.Float).SetInt(value)), nil
 }
 
-func ToWei(amount *big.Int, unit string) (*big.Int, bool) {
-	if unit == "wei" {
-		return amount, true
+// ToWei convert a unit to wei
+func ToWei(amount *big.Float, unit string) (*big.Int, error) {
+	if unit == Wei {
+		return floatToBigInt(amount), nil
 	}
-	value, ok := getUnitValue(unit)
-	if !ok {
-		return nil, false
+	value, err := getUnitValue(unit)
+	if err != nil {
+		return nil, err
 	}
-	return value.Div(amount, amount), true
+	amount.Mul(amount, new(big.Float).SetInt(value))
+	result := new(big.Int)
+	amount.Int(result)
+	return result, nil
 }
 
-func getUnitValue(unit string) (*big.Int, bool) {
-	target := new(big.Int)
+// getUnitValue from Units map
+func getUnitValue(unit string) (*big.Int, error) {
 	value, ok := Units[unit]
 	if !ok {
-		return nil, false
+		return nil, fmt.Errorf("unit %s is not supported", unit)
 	}
-	return target.SetString(value, 10)
+	result := new(big.Int)
+	result.SetString(value, 10)
+	return result, nil
+}
+
+// floatToBigInt conversion
+func floatToBigInt(value *big.Float) *big.Int {
+	per := new(big.Float)
+	per.SetInt(big.NewInt(1000000000000000000))
+	value.Mul(value, per)
+	result := new(big.Int)
+	value.Int(result)
+	return result
 }
