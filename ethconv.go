@@ -1,28 +1,36 @@
 package ethconv
 
-const (
-	Wei        = "1"
-	Kwei       = "1000"
-	Babbage    = "1000"
-	Femtoether = "1000"
-	Mwei       = "1000000"
-	Lovelace   = "1000000"
-	Picoether  = "1000000"
-	Gwei       = "1000000000"
-	Shannon    = "1000000000"
-	Nanoether  = "1000000000"
-	Nano       = "1000000000"
-	Szabo      = "1000000000000"
-	Microether = "1000000000000"
-	Micro      = "1000000000000"
-	Finney     = "1000000000000000"
-	Milliether = "1000000000000000"
-	Milli      = "1000000000000000"
-	Ether      = "1000000000000000000"
-	Kether     = "1000000000000000000000"
-	Grand      = "1000000000000000000000"
-	Einstein   = "1000000000000000000000"
-	Mether     = "1000000000000000000000000"
-	Gether     = "1000000000000000000000000000"
-	Tether     = "1000000000000000000000000000000"
+import (
+	"math/big"
 )
+
+func FromWei(amount *big.Int, unit string) (*big.Int, bool) {
+	if unit == "wei" {
+		return amount, true
+	}
+	value, ok := getUnitValue(unit)
+	if !ok {
+		return nil, false
+	}
+	return value.Div(amount, amount), true
+}
+
+func ToWei(amount *big.Int, unit string) (*big.Int, bool) {
+	if unit == "wei" {
+		return amount, true
+	}
+	value, ok := getUnitValue(unit)
+	if !ok {
+		return nil, false
+	}
+	return value.Div(amount, amount), true
+}
+
+func getUnitValue(unit string) (*big.Int, bool) {
+	target := new(big.Int)
+	value, ok := Units[unit]
+	if !ok {
+		return nil, false
+	}
+	return target.SetString(value, 10)
+}

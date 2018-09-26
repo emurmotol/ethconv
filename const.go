@@ -1,0 +1,28 @@
+package ethconv
+
+const (
+	Wei        = "wei"
+	Kwei       = "kwei"
+	Babbage    = "babbage"
+	Femtoether = "femtoether"
+	Mwei       = "mwei"
+	Lovelace   = "lovelace"
+	Picoether  = "picoether"
+	Gwei       = "gwei"
+	Shannon    = "shannon"
+	Nanoether  = "nanoether"
+	Nano       = "nano"
+	Szabo      = "szabo"
+	Microether = "microether"
+	Micro      = "micro"
+	Finney     = "finney"
+	Milliether = "milliether"
+	Milli      = "milli"
+	Ether      = "ether"
+	Kether     = "kether"
+	Grand      = "grand"
+	Einstein   = "einstein"
+	Mether     = "mether"
+	Gether     = "gether"
+	Tether     = "tether"
+)
