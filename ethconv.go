@@ -12,7 +12,7 @@ func FromWei(amount *big.Int, unit string) (*big.Float, error) {
 	if unit == Wei {
 		return result, nil
 	}
-	value, err := getUnitValue(unit)
+	value, err := GetUnitValue(unit)
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +24,7 @@ func ToWei(amount *big.Float, unit string) (*big.Int, error) {
 	if unit == Wei {
 		return bigFloatToBigInt(amount), nil
 	}
-	value, err := getUnitValue(unit)
+	value, err := GetUnitValue(unit)
 	if err != nil {
 		return nil, err
 	}
@@ -34,8 +34,8 @@ func ToWei(amount *big.Float, unit string) (*big.Int, error) {
 	return result, nil
 }
 
-// getUnitValue from Units map
-func getUnitValue(unit string) (*big.Int, error) {
+// GetUnitValue from Units map
+func GetUnitValue(unit string) (*big.Int, error) {
 	value, ok := Units[unit]
 	if !ok {
 		return nil, fmt.Errorf("unit %s is not supported", unit)
