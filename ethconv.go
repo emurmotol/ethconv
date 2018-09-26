@@ -22,7 +22,7 @@ func FromWei(amount *big.Int, unit string) (*big.Float, error) {
 // ToWei convert a unit to wei
 func ToWei(amount *big.Float, unit string) (*big.Int, error) {
 	if unit == Wei {
-		return floatToBigInt(amount), nil
+		return bigFloatToBigInt(amount), nil
 	}
 	value, err := getUnitValue(unit)
 	if err != nil {
@@ -45,8 +45,8 @@ func getUnitValue(unit string) (*big.Int, error) {
 	return result, nil
 }
 
-// floatToBigInt conversion
-func floatToBigInt(value *big.Float) *big.Int {
+// bigFloatToBigInt conversion
+func bigFloatToBigInt(value *big.Float) *big.Int {
 	per := new(big.Float)
 	per.SetInt(big.NewInt(1000000000000000000))
 	value.Mul(value, per)
