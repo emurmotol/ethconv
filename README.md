@@ -55,7 +55,7 @@ func main() {
 
 **Donations:**
 
-If you like it you can send a small donation to either of the following addresses:
+If you like it you can send a small donation to any of the following addresses:
 
 BTC: `3P1eTCYEcFGoN4bCfRAUbedfqK17DCMM5R`
 
