@@ -52,3 +52,15 @@ func main() {
 - `mether`
 - `gether`
 - `tether`
+
+**Donations:**
+
+If you like it you can send a small donation to either of the following addresses:
+
+BTC: `3P1eTCYEcFGoN4bCfRAUbedfqK17DCMM5R`
+
+ETH: `0x4939e019c56a8885bcd5fac11eba1cb1b147dc6e`
+
+XRP: `rU2mEJSLqBRkYLVTv55rFTgQajkLTnT6mA` DT: `110892`
+
+BAT: `0x0a317eA88131eFD0FC48E0ac9945996Eb690dbc0`
