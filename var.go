@@ -1,7 +1,7 @@
 package ethconv
 
 var (
-	Units = map[string]string{
+	units = map[string]string{
 		Wei:        "1",
 		Kwei:       "1000",
 		Babbage:    "1000",

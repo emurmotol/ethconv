@@ -36,7 +36,7 @@ func ToWei(amount *big.Float, unit string) (*big.Int, error) {
 
 // GetUnitValue from Units map
 func GetUnitValue(unit string) (*big.Int, error) {
-	value, ok := Units[unit]
+	value, ok := units[unit]
 	if !ok {
 		return nil, fmt.Errorf("unit %s is not supported", unit)
 	}
