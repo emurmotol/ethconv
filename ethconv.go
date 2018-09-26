@@ -34,7 +34,7 @@ func ToWei(amount *big.Float, unit string) (*big.Int, error) {
 	return result, nil
 }
 
-// GetUnitValue from Units map
+// GetUnitValue from units map
 func GetUnitValue(unit string) (*big.Int, error) {
 	value, ok := units[unit]
 	if !ok {
